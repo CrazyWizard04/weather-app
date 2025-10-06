@@ -69,8 +69,8 @@ It includes everything from temperature and air quality to moon phases and live 
 
 ## 🔗 Links
 
-- 💡 **Solution URL:** [Frontend Mentor Submission](#)
-- 🌐 **Live Site URL:** [Live Demo](#)
+- 💡 **Solution URL:** [Frontend Mentor Submission](https://www.frontendmentor.io/solutions/weather-app-hackathon-solution-a492zx3_eE)
+- 🌐 **Live Site URL:** [Live Demo](https://crazy-weather-app-delta.vercel.app/)
 
 ---
 
@@ -125,9 +125,9 @@ No, this isn't end yet! I already have a few ideas in mind:
 
 ## 👨‍💻 Author
 
-Frontend Mentor: [CrazyWizard04](https://github.com/CrazyWizard04)
+GitHub: [CrazyWizard04](https://github.com/CrazyWizard04)
 
-GitHub: [CrazyWizard04]()
+Frontend Mentor: [CrazyWizard04](https://www.frontendmentor.io/profile/CrazyWizard04)
 
 ---
 
