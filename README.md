@@ -125,9 +125,9 @@ No, this isn't end yet! I already have a few ideas in mind:
 
 ## 👨‍💻 Author
 
-Frontend Mentor: [CrazyWizard04](https://github.com/CrazyWizard04)
+GitHub: [CrazyWizard04](https://github.com/CrazyWizard04)
 
-GitHub: [CrazyWizard04](https://www.frontendmentor.io/profile/CrazyWizard04)
+Frontend Mentor: [CrazyWizard04](https://www.frontendmentor.io/profile/CrazyWizard04)
 
 ---
 
