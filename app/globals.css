@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* NEUTRAL */
+  --color-neutral-0: #fffff;
+  --color-neutral-200: #d4d3d9;
+  --color-neutral-300: #acacb7;
+  --color-neutral-600: #3c3b5e;
+  --color-neutral-700: #302f4a;
+  --color-neutral-800: #262540;
+  --color-neutral-900: #02012c;
+
+  /* BLUE */
+  --color-blue-500: #4658d9;
+  --color-blue-700: #2b1b9c;
+
+  /* FONTS */
+  --font-dmSans-italic: var(--font-dmSans-italic);
+  --font-dmSans: var(--font-dmSans);
+  --font-bricolage: var(--font-bricolage);
+  --text-normal: 18px;
+
+  --weatherCard: url(../public/bg-today-large.svg);
+}
+
+@layer base {
+  * {
+    @apply font-dmSans m-0 box-border p-0;
+  }
+
+  body {
+    @apply min-h-screen bg-gradient-to-tl from-blue-300 to-sky-100 p-4 md:p-6 md:py-10 lg:px-24 dark:from-blue-900 dark:to-neutral-900;
+  }
+
+  h1 {
+    @apply font-bricolage my-16 text-center text-6xl font-bold text-neutral-600 dark:text-white;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold text-white;
+  }
+
+  h3 {
+    @apply text-lg font-semibold text-neutral-900 dark:text-white;
+  }
+
+  p {
+    @apply text-normal text-neutral-600 dark:text-white;
+  }
+
+  hr {
+    @apply my-1 border-neutral-600;
+  }
+}
+
+@layer components {
+  .header_btn {
+    @apply flex-center relative cursor-pointer h-[40px] gap-3 rounded-lg bg-blue-100 px-3 py-2 dark:bg-neutral-800;
+  }
+
+  .small_btn {
+    @apply flex-center cursor-pointer gap-2 rounded-lg bg-sky-50 px-4 py-2 dark:bg-neutral-600;
+  }
+
+  .divider {
+    @apply flex items-center text-sm text-neutral-800 before:me-4 before:flex-1 before:border-t before:border-neutral-600 after:ms-4 after:flex-1 after:border-t after:border-neutral-600 dark:text-white dark:before:border-neutral-500 dark:after:border-neutral-500;
+  }
+
+  .units_select {
+    @apply absolute top-14 right-0 z-20 w-[200px] rounded-lg bg-blue-100 dark:bg-neutral-800 p-2 shadow-lg shadow-neutral-900 outline-1 outline-neutral-600;
+  }
+
+  .units_span {
+    @apply p-2 text-sm text-neutral-800 dark:text-neutral-200;
+  }
+
+  .units_label {
+    @apply flex-between cursor-pointer rounded-lg p-2 text-sm text-neutral-800 dark:text-white hover:bg-blue-200 hover:dark:bg-neutral-700;
+  }
+
+  .search_form {
+    @apply flex-center relative mb-8 w-full flex-col gap-4 md:max-w-[600px] md:flex-row;
+  }
+
+  .search_input {
+    @apply text-normal w-full cursor-pointer rounded-lg bg-blue-100 py-3 pl-12 text-neutral-800 dark:text-white outline-white placeholder:text-neutral-800 hover:bg-blue-200 hover:dark:bg-neutral-700 focus:outline-2 dark:bg-neutral-800 dark:placeholder:text-neutral-200;
+  }
+
+  .search_btn {
+    @apply text-normal w-full cursor-pointer rounded-lg bg-blue-500 focus:outline-2 outline-offset-2 outline-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-700 md:w-auto;
+  }
+
+  .search_select_status {
+    @apply absolute top-15 left-0 flex max-h-12 w-full items-center rounded-lg bg-blue-100 dark:bg-neutral-800 p-4 shadow-lg shadow-neutral-900 md:w-4/5;
+  }
+
+  .search_select {
+    @apply absolute top-15 left-0 max-h-78 w-4/5 overflow-y-auto rounded-lg bg-blue-100 dark:bg-neutral-800 p-2 shadow-lg shadow-neutral-900;
+  }
+
+  .search_label {
+    @apply flex-between max-h-15 cursor-pointer rounded-lg p-2 -outline-offset-1 outline-blue-300 dark:outline-neutral-600 hover:bg-blue-200 hover:dark:bg-neutral-700 hover:outline-1;
+  }
+
+  .weather_container {
+    @apply grid grid-cols-1 gap-8 lg:grid-cols-3;
+  }
+
+  .weather_card {
+    @apply md:flex-between mb-8 flex h-[280px] flex-col items-center justify-evenly rounded-2xl -bg-linear-70 bg-[url(../public/bg-today-small.svg)] from-blue-500 to-blue-700 bg-cover bg-no-repeat md:flex-row md:bg-[url(../public/bg-today-large.svg)] md:p-6;
+  }
+
+  .current_container {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-3;
+  }
+
+  .current_extend_btn {
+    @apply flex-center col-span-full cursor-pointer justify-end gap-2;
+  }
+
+  .current_card {
+    @apply flex-between rounded-xl border-1 border-blue-200 bg-blue-100 p-4 dark:border-neutral-600 dark:bg-neutral-800;
+  }
+
+  .temp_font {
+    @apply font-dmSans-italic text-8xl font-semibold text-white;
+  }
+
+  .daily_container {
+    @apply mt-5 grid grid-cols-3 gap-4 md:grid-cols-7;
+  }
+
+  .daily_loading {
+    @apply h-[160px] w-full rounded-xl border-1 border-blue-200 dark:border-neutral-600 bg-blue-100 dark:bg-neutral-800
+  }
+
+  .daily_card {
+    @apply flex flex-col gap-2 rounded-xl border-1 border-blue-200 bg-blue-100 px-2 py-3 text-center dark:border-neutral-600 dark:bg-neutral-800;
+  }
+
+  .hourly_container {
+    @apply flex h-[680px] min-h-full flex-col overflow-y-auto rounded-2xl bg-blue-100 px-2 lg:h-0 dark:bg-neutral-800;
+  }
+
+  .hourly_loading {
+    @apply h-[60px] w-full rounded-lg border-blue-200 bg-sky-50 border-1 dark:border-neutral-600 dark:bg-neutral-700
+  }
+
+  .hourly_bar {
+    @apply flex-between sticky top-0 left-0 z-10 bg-blue-100 p-4 pb-2 dark:bg-neutral-800;
+  }
+
+  .hourly_day_select {
+    @apply absolute top-12 right-0 w-54 rounded-lg bg-sky-50 dark:bg-neutral-800 p-2 shadow-lg shadow-neutral-900 outline-1 outline-blue-200 dark:outline-neutral-600;
+  }
+
+  .hourly_day_label {
+    @apply cursor-pointer rounded-lg p-2 text-base font-medium text-neutral-700 dark:text-white hover:bg-blue-100 hover:dark:bg-neutral-700;
+  }
+
+  .hourly_label {
+    @apply flex-between relative h-[60px] w-full rounded-lg border-1 border-blue-200 bg-sky-50 p-4 dark:border-neutral-600 dark:bg-neutral-700;
+  }
+
+  .extra_info_card {
+    @apply rounded-2xl bg-blue-100 p-6 w-full h-[300px] dark:bg-neutral-800;
+  }
+
+  .airQuality_details {
+    @apply flex-between gap-4 rounded-lg bg-blue-300 p-2 border-1 border-blue-200 dark:bg-neutral-700 dark:border-neutral-600;
+  }
+
+  .airQuality_index {
+    @apply rounded-full border-1 px-2 font-semibold;
+  }
+
+  .lunar_details {
+    @apply flex-between rounded-lg bg-blue-300 px-4 py-1 border-1 border-blue-200 dark:bg-neutral-700 dark:border-neutral-600;
+  }
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+.custom_scroll::-webkit-scrollbar {
+  position: absolute;
+  right: 15px;
+  width: 5px;
+}
+
+.custom_scroll::-webkit-scrollbar-track {
+  border-radius: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.custom_scroll::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-600);
+  border-radius: 100px;
+}
+
+.leaflet-container {
+  background-color: #302f4a !important;
+}
