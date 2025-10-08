@@ -6,16 +6,16 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import { useRainMap } from "@/app/hooks/useRainMap";
 import Modal from "@/app/components/ui/Modal";
 import RainFullMap from "@/app/components/extraDetails/RainFullMap";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
 import { useThemeContext } from "@/app/components/providers/ThemeProvider";
 import Image from "next/image";
+import { useWeather } from "@/app/store/useWeather";
 
 // A widget which shows a preview map with rain radar
 const RainMiniMap = () => {
   // Gets the current theme from the context provider
   const { darkMode } = useThemeContext();
   // Gets the city from the context provider for the coords
-  const { city } = useWeatherContext();
+  const { city } = useWeather();
   // Gets the rainLayer from the hook
   const { rainMap } = useRainMap();
 

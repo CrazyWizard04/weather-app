@@ -3,7 +3,7 @@ import "./globals.css";
 import React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Providers from "@/app/components/providers/Providers";
+import ThemeProvider from "@/app/components/providers/ThemeProvider";
 
 const dmSansItalic = localFont({
   src: "./fonts/DMSans-Italic-VF.ttf",
@@ -33,13 +33,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providers>
+      <ThemeProvider>
         <body
           className={`${dmSansItalic.variable} ${dmSans.variable} ${bricolage.variable}`}
         >
           {children}
         </body>
-      </Providers>
+      </ThemeProvider>
     </html>
   );
 }

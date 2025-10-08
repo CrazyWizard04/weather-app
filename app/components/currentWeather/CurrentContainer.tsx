@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { getCurrentCards } from "@/lib/utils/constants";
 import CurrentCard from "@/app/components/currentWeather/CurrentCard";
-import { useUnitsContext } from "@/app/components/providers/UnitsProvider";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
 import Image from "next/image";
+import { useWeather } from "@/app/store/useWeather";
+import { useSettings } from "@/app/store/useSettings";
 
 // Container which shows details of the current weather
 const CurrentContainer = () => {
@@ -11,14 +11,14 @@ const CurrentContainer = () => {
   const details = moreDetails ? 9 : 3;
 
   // Gets the units from the context provider
-  const { units } = useUnitsContext();
+  const { units } = useSettings();
 
   // Gets the weather data from the context provider
-  const { weather } = useWeatherContext();
-  if (!weather || !weather.currentWeather) return;
+  const { weatherData } = useWeather();
+  if (!weatherData) return;
 
   // Grabs the details cards value, description, and icon with correct units
-  const currentCards = getCurrentCards(weather.currentWeather, units);
+  const currentCards = getCurrentCards(weatherData.currentWeather, units);
 
   // Mapping the current weather data which can be expanded/folded
   return (

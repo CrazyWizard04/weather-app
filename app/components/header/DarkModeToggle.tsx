@@ -1,6 +1,6 @@
 import React from "react";
 import { useThemeContext } from "@/app/components/providers/ThemeProvider";
-import Image from "next/image";
+import Icon from "@/app/components/ui/Icon";
 
 // Button to toggle between dark/light mode
 const DarkModeToggle = () => {
@@ -8,19 +8,19 @@ const DarkModeToggle = () => {
   const { toggleDarkMode } = useThemeContext();
   return (
     <button className="header_btn" onClick={toggleDarkMode}>
-      <Image
-        src="ui-icons/light-mode.svg"
-        alt="light-mode"
+      <Icon
+        name="light-mode"
+        width={25}
+        height={25}
         className="hidden dark:block"
-        width={25}
-        height={25}
+        needsTheme={false}
       />
-      <Image
-        src="ui-icons/dark-mode.svg"
-        alt="dark-mode"
-        className="block dark:hidden"
+      <Icon
+        name="dark-mode"
         width={25}
         height={25}
+        className="block dark:hidden"
+        needsTheme={false}
       />
     </button>
   );

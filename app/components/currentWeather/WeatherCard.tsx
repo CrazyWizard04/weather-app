@@ -4,20 +4,20 @@ import {
   formatTemp,
   formatWeatherCode,
 } from "@/lib/utils/formatting";
-import { useUnitsContext } from "@/app/components/providers/UnitsProvider";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
+import { useWeather } from "@/app/store/useWeather";
+import { useSettings } from "@/app/store/useSettings";
 
 // The giant weather card which shows your location, temperature and current weather
 const WeatherCard = () => {
   // Gets the units from the context provider
-  const { units } = useUnitsContext();
+  const { units } = useSettings();
 
   // Gets the weather data from the context provider
-  const { weather, city } = useWeatherContext();
-  if (!weather || !city) return;
+  const { weatherData, city } = useWeather();
+  if (!weatherData || !city) return;
 
   // Destruction of the data required here
-  const { time, weatherCode, temp, isDay } = weather.currentWeather;
+  const { time, weatherCode, temp, isDay } = weatherData.currentWeather;
 
   // Displaying the city with date, current weather and temperature
   return (

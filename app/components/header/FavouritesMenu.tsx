@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { CircleFlag } from "react-circle-flags";
-import { useFavouritesContext } from "@/app/components/providers/FavouritesProvider";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
 import Button from "@/app/components/ui/Button";
 import Modal from "@/app/components/ui/Modal";
-import Image from "next/image";
+import Icon from "@/app/components/ui/Icon";
+import { useFavorites } from "@/app/store/useFavoritesStore";
+import { useWeather } from "@/app/store/useWeather";
 
 // Displays all favourite cities in a modal with the option to remove them
 const FavouritesMenu = () => {
   const [open, setOpen] = useState(false);
 
-  // Gets the favourites and the remove funciton from the context provider
-  const { favourites, removeFavourite } = useFavouritesContext();
+  // Gets the favourites and the remove function from the context provider
+  const { favorites, removeFavorite } = useFavorites();
   // Gets the setCity function so that when you click on a favorite, its weather is retrieved
-  const { setCity } = useWeatherContext();
+  const { setCity } = useWeather();
 
   return (
     <>
@@ -31,11 +31,11 @@ const FavouritesMenu = () => {
         open={open}
         setOpen={setOpen}
       >
-        {favourites.length === 0 ? (
+        {favorites.length === 0 ? (
           <p className="mt-2">No saved locations yet :)</p>
         ) : (
           <ul className="mt-2 space-y-2">
-            {favourites.map((fav, i) => (
+            {favorites.map((fav, i) => (
               <li
                 key={`city-${i}`}
                 className="search_label"
@@ -62,14 +62,14 @@ const FavouritesMenu = () => {
                   className="cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    removeFavourite(fav.latitude, fav.longitude);
+                    removeFavorite(fav);
                   }}
                 >
-                  <Image
-                    src="ui-icons/delete.svg"
-                    alt="delete"
+                  <Icon
+                    name="delete"
                     width={25}
                     height={25}
+                    needsTheme={false}
                   />
                 </button>
               </li>

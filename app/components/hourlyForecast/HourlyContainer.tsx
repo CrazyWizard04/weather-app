@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { formatDate, getNext24Hours, isSameDay } from "@/lib/utils/formatting";
 import HourlySelect from "@/app/components/hourlyForecast/HourlySelect";
 import HourlyLabel from "@/app/components/hourlyForecast/HourlyLabel";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
+import { useWeather } from "@/app/store/useWeather";
 
 // Container which shows the hourly forecast of a selected day
 const HourlyContainer = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date()); // Current day as selected day
 
   // Gets the weather data from the context provider
-  const { weather } = useWeatherContext();
-  if (!weather) return;
+  const { weatherData } = useWeather();
+  if (!weatherData) return;
 
   // Fuses the sun events (sunrise/sunset) with hourly forecast data for visualization
   const { hours, sunEvents } = getNext24Hours(
-    weather.hourlyWeather,
-    weather.dailyWeather,
+    weatherData.hourlyWeather,
+    weatherData.dailyWeather,
     selectedDate,
   );
   let lastDay: number | null = null;
@@ -25,7 +25,7 @@ const HourlyContainer = () => {
       <div className="hourly_bar">
         <h3 className="text-center">Hourly forecast</h3>
         <HourlySelect
-          dailyData={weather.dailyWeather}
+          dailyData={weatherData.dailyWeather}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />

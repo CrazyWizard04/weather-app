@@ -1,6 +1,6 @@
 import React from "react";
 import CurrentCard from "@/app/components/currentWeather/CurrentCard";
-import Image from "next/image";
+import Icon from "@/app/components/ui/Icon";
 
 // This shows a skeleton of the elements in the main page when its loading
 const LoadingSkeleton = () => {
@@ -8,12 +8,12 @@ const LoadingSkeleton = () => {
     <section className="weather_container">
       <div className="lg:col-span-2">
         <div className="flex-center mb-6 h-[280px] flex-col gap-4 rounded-lg bg-blue-100 dark:bg-neutral-800">
-          <Image
-            src="ui-icons/loading.svg"
-            alt="loading"
-            className="animate-spin"
+          <Icon
+            name="loading"
             width={50}
             height={50}
+            className="animate-spin"
+            needsTheme={false}
           />
           <p className="text-sm text-neutral-600 dark:text-neutral-200">
             Loading...
@@ -37,20 +37,7 @@ const LoadingSkeleton = () => {
             image="weather-details/wind-beaufort/wind-0.svg"
           />
           <button className="current_extend_btn">
-            <Image
-              src="ui-icons/dropdown-light.svg"
-              alt="extend-light"
-              className="block duration-200 dark:hidden"
-              width={30}
-              height={30}
-            />
-            <Image
-              src="ui-icons/dropdown-dark.svg"
-              alt="extend-dark"
-              className="hidden duration-200 dark:block"
-              width={30}
-              height={30}
-            />
+            <Icon name="dropdown" width={30} height={30} />
             <span className="text-neutral-900 dark:text-white">
               More Details
             </span>
@@ -74,20 +61,7 @@ const LoadingSkeleton = () => {
           <h3 className="text-center">Hourly forecast</h3>
           <div className="small_btn">
             <p className="text-sm">-</p>
-            <Image
-              src="ui-icons/dropdown-light.svg"
-              alt="dropdownLight"
-              className="block dark:hidden"
-              width={15}
-              height={15}
-            />
-            <Image
-              src="ui-icons/dropdown-dark.svg"
-              alt="dropdownDark"
-              className="hidden dark:block"
-              width={15}
-              height={15}
-            />
+            <Icon name="dropdown" width={15} height={15} />
           </div>
         </div>
 

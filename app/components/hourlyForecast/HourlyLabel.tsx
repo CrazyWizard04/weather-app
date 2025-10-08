@@ -5,7 +5,7 @@ import {
   formatWeatherCode,
 } from "@/lib/utils/formatting";
 import { HourlyWeather } from "@/lib/types";
-import { useUnitsContext } from "@/app/components/providers/UnitsProvider";
+import { useSettings } from "@/app/store/useSettings";
 
 interface Props {
   hourlyData: HourlyWeather;
@@ -16,7 +16,7 @@ const HourlyLabel = ({ hourlyData }: Props) => {
   // Destruction of the data required here
   const { weatherCode, time, temp, isDay } = hourlyData;
   // Gets the units from the context provider
-  const { units } = useUnitsContext();
+  const { units } = useSettings();
 
   return (
     <div className="hourly_label">

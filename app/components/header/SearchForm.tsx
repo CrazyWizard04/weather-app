@@ -4,32 +4,17 @@ import React, { FormEvent, useState } from "react";
 import { CircleFlag } from "react-circle-flags";
 import { City } from "@/lib/types";
 import { useSearchCities } from "@/app/hooks/useSearchCities";
-import { useFavouritesContext } from "@/app/components/providers/FavouritesProvider";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
-import Image from "next/image";
+import Icon from "@/app/components/ui/Icon";
+import { useWeather } from "@/app/store/useWeather";
+import { useFavorites } from "@/app/store/useFavoritesStore";
 
 const SearchForm = () => {
   const [query, setQuery] = useState(""); // Value in the input
   const [focused, setFocused] = useState(false); // Focus on the input
   // Gets the favourites and editing funcitons from the context provider
-  const { favourites, saveFavourite, removeFavourite } = useFavouritesContext();
+  const { isFavorite, toggleFavorite } = useFavorites();
   // Gets the setCity from the context provider
-  const { setCity } = useWeatherContext();
-
-  // Checks if one of the cities is added as favourite
-  const favourite = (city: City) => {
-    return favourites.some(
-      (fav) =>
-        fav.latitude === city.latitude && fav.longitude === city.longitude,
-    );
-  };
-
-  // Add/Removes the city as favourite when clicked
-  const toggleFavourite = (city: City) => {
-    favourite(city)
-      ? removeFavourite(city.latitude, city.longitude)
-      : saveFavourite(city);
-  };
+  const { setCity } = useWeather();
 
   // Fetch the first 10 matching cities of the query
   const { cities, loading, error, searchCities } = useSearchCities(
@@ -59,19 +44,11 @@ const SearchForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="search_form">
-      <Image
-        src="ui-icons/search-light.svg"
-        alt="searchLight"
-        className="absolute top-4 left-4 block dark:hidden"
+      <Icon
+        name="search"
         width={20}
         height={20}
-      />
-      <Image
-        src="ui-icons/search-dark.svg"
-        alt="searchDark"
-        className="absolute top-4 left-4 hidden dark:block"
-        width={20}
-        height={20}
+        className="absolute top-4 left-4"
       />
       <input
         name="query"
@@ -88,12 +65,12 @@ const SearchForm = () => {
 
       {loading && (
         <div className="search_select_status">
-          <Image
-            src="ui-icons/loading.svg"
-            alt="loading"
-            className="animate-spin"
+          <Icon
+            name="loading"
             width={30}
             height={30}
+            className="animate-spin"
+            needsTheme={false}
           />
           <span className="text-normal ml-4 text-neutral-700 dark:text-white">
             Search in progress
@@ -103,12 +80,7 @@ const SearchForm = () => {
 
       {error && (
         <div className="search_select_status">
-          <Image
-            src="ui-icons/error.svg"
-            alt="loading"
-            width={30}
-            height={30}
-          />
+          <Icon name="error" width={30} height={30} needsTheme={false} />
           <span className="text-normal ml-4 text-neutral-700 dark:text-white">
             No search results found.
           </span>
@@ -146,22 +118,22 @@ const SearchForm = () => {
                 onMouseDown={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  toggleFavourite(city);
+                  toggleFavorite(city);
                 }}
               >
-                {favourite(city) ? (
-                  <Image
-                    src="ui-icons/star-full.svg"
-                    alt="add"
+                {isFavorite(city) ? (
+                  <Icon
+                    name="star-full"
                     width={25}
                     height={25}
+                    needsTheme={false}
                   />
                 ) : (
-                  <Image
-                    src="ui-icons/star-outline.svg"
-                    alt="remove"
+                  <Icon
+                    name="star-outline"
                     width={25}
                     height={25}
+                    needsTheme={false}
                   />
                 )}
               </button>

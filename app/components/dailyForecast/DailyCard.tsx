@@ -6,7 +6,7 @@ import {
   isSameDay,
 } from "@/lib/utils/formatting";
 import { DailyWeather } from "@/lib/types";
-import { useUnitsContext } from "@/app/components/providers/UnitsProvider";
+import { useSettings } from "@/app/store/useSettings";
 
 interface Props {
   dailyData: DailyWeather;
@@ -17,7 +17,7 @@ const DailyCard = ({ dailyData }: Props) => {
   const { time, weatherCode, minTemp, maxTemp } = dailyData;
 
   // Gets the units from the context provider
-  const { units } = useUnitsContext();
+  const { units } = useSettings();
 
   // Displays "Today" instead of the days name
   const dailyTime = new Date(time);

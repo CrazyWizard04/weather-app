@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import SunCalc from "suncalc";
 import { formatMoonPhases } from "@/lib/utils/formatting";
 import { drawMoon } from "@/lib/utils/moonPainter";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
+import { useWeather } from "@/app/store/useWeather";
 
 // Details card which shows the moon phases, distance, set/rise time and the next Full Moon
 const LunarContainer = () => {
@@ -10,7 +10,7 @@ const LunarContainer = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null); // Container of the drawn Moon phase
 
   // Grab selected City from Context
-  const { city } = useWeatherContext();
+  const { city } = useWeather();
   if (!city) return;
 
   // Get Illumination of the Moon and the current Moon phase

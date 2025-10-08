@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useWeatherContext } from "@/app/components/providers/WeatherProvider";
 import DarkModeToggle from "@/app/components/header/DarkModeToggle";
 import FavouritesMenu from "@/app/components/header/FavouritesMenu";
 import UnitsSelect from "@/app/components/header/UnitsSelect";
@@ -16,6 +15,7 @@ import HourlyContainer from "@/app/components/hourlyForecast/HourlyContainer";
 import AirQualityContainer from "@/app/components/extraDetails/AirQualityContainer";
 import LunarContainer from "@/app/components/extraDetails/LunarContainer";
 import Image from "next/image";
+import { useWeather } from "@/app/store/useWeather";
 
 // Loading the Rain Map dynamically
 const RainMiniMap = dynamic(
@@ -28,7 +28,11 @@ const RainMiniMap = dynamic(
 // The heart of this project: The main page with all components
 export default function Home() {
   // Getting the needed data from our Context Provider
-  const { weather, loading, error, city } = useWeatherContext();
+  const { weatherData, fetchWeather, loading, error, city } = useWeather();
+
+  useEffect(() => {
+    fetchWeather();
+  }, []);
 
   return (
     <main>
@@ -60,9 +64,9 @@ export default function Home() {
       </section>
 
       {loading && <LoadingSkeleton />}
-      {error && <ErrorState errorMessage={error} />}
+      {error && <ErrorState errorMessage="Error lol" />}
 
-      {weather && city && !loading && (
+      {weatherData && city && !loading && (
         <section className="weather_container">
           <div className="lg:col-span-2">
             <WeatherCard />
