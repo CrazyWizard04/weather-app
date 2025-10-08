@@ -81,7 +81,7 @@ export const useWeather = create<WeatherState>()(
           const yourCity = await getReverseCityData(lat, lon);
           set({ city: yourCity });
 
-          await get().fetchWeather();
+          await get().fetchWeather(true);
         } catch (error) {
           set({ city: DEFAULT_CITY, loading: false, error: true });
           await get().fetchWeather(true);
