@@ -81,7 +81,7 @@ const LunarContainer = () => {
         <div className="lunar_details">
           <p>{now > rise ? "⬇" : "⬆"}</p>
           <span className="text-white">
-            {showMoonTimes.toLocaleTimeString("en-US", {
+            {showMoonTimes?.toLocaleTimeString("en-US", {
               minute: "2-digit",
               hour: "2-digit",
             })}
